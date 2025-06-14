@@ -52,7 +52,7 @@ A solução é composta por:
 
 **Outros:**
 - JWT para autenticação
-- PDFKit para geração de laudos
+- reportlab para geração de documentos
 
 ---
 
