@@ -76,7 +76,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       api.defaults.headers.common['Authorization'] = `Bearer ${access}`;
       const userResponse = await api.get('/autenticacao/usuarios/me/');
       setUser(userResponse.data);
-      router.push('/dashboard');
+      router.push('/main');
     } catch (error) {
       console.error('Falha na autenticação', error);
       // Lança o erro para ser capturado pelo componente

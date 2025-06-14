@@ -4,7 +4,8 @@ import "./globals.css";
 
 import { AuthProvider } from "@/context/AuthContext";
 
-import Header from "@/components/header/header";
+import { MainProvider } from "@/app/pageContext/page";
+import SideBar from "@/components/sideBar/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +31,14 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${geistMono.variable} ${geistSans.variable}`}>
       <body>
         <AuthProvider>
-          <Header/>
-          {children} 
+          <MainProvider>
+            <div className="flex h-screen bg-gray-50">
+              <SideBar />
+              <main className="flex-1 overflow-y-auto p-8">
+                {children} 
+              </main>
+            </div>
+          </MainProvider>
         </AuthProvider>
       </body>
     </html>
