@@ -56,4 +56,4 @@ A solução é composta por:
 
 ---
 
-**As instruções de intalação você encontra nas respectivas branches 'frontend' e 'backend'**
+**As instruções de instalação você encontra nas respectivas branches 'frontend' e 'backend'**
