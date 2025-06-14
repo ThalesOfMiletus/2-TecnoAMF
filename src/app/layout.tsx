@@ -1,11 +1,8 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-import { AuthProvider } from "@/context/AuthContext";
-
-import { MainProvider } from "@/app/pageContext/page";
-import SideBar from "@/components/sideBar/page";
+import { AuthProvider } from "@/context/AuthContext"; // AuthProvider é global
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,15 +27,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${geistMono.variable} ${geistSans.variable}`}>
       <body>
+        {/* AuthProvider continua aqui, pois o estado de login é necessário em todo o site */}
         <AuthProvider>
-          <MainProvider>
-            <div className="flex h-screen bg-gray-50">
-              <SideBar />
-              <main className="flex-1 overflow-y-auto p-8">
-                {children} 
-              </main>
-            </div>
-          </MainProvider>
+          {children} 
         </AuthProvider>
       </body>
     </html>

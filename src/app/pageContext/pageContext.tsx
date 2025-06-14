@@ -2,7 +2,6 @@
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-// Define os valores que o nosso contexto vai ter
 type MainContextType = {
   activeView: string;
   setActiveView: (view: string) => void;

@@ -1,8 +1,8 @@
-import Panoramica from "./Panoramica";
+//import Panoramica from "./Panoramica";
 
 export default interface Comparacao {
     id: number;
-    atual_panoramica: Panoramica;
-    anterior_panoramica: Panoramica;
+    atual_panoramica: number;
+    anterior_panoramica: number;
     progressao: string; 
 }

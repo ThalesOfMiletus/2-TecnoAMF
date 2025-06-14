@@ -3,44 +3,44 @@
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const router = useRouter();
+    const router = useRouter();
 
-  const goDashboard = () => {
-    router.push("/dashboard");
-  }
-
-  return (
-    <div className="
-        flex 
-        bg-gray-100 
-        min-h-screen
-        items-center
-        justify-center
-      "
-    >
-      <div
-        className="
-          
-        "
-      >
-        <h1 className="text-5xl md:text-6xl font-semibold text-gray-800">
-          Bem-vindo!
-        </h1>
-        <button
-          className="
-            text-gray-800 
-            border-2 
-            rounded-md 
-            px-2
-            hover:bg-gray-300
-            cursor-pointer
-            transition-colors
-          "
-          onClick={() => goDashboard()}
+    return (
+        <div
+            className="
+                bg-gray-100
+                min-h-screen
+                justify-center
+                items-center
+                flex
+            "
         >
-          Ir para a dashboard
-        </button>
-      </div>
-    </div>    
-  );
+            <div className="justify-items-center">
+                <h2
+                    className="
+                        text-gray-800
+                        text-5xl
+                        font-bold
+                    "
+                >
+                    Bem-vindo!
+                </h2>
+                <button
+                    className="
+                        text-gray-800
+                        border rounded px-2
+                        mt-4 cursor-pointer
+                        hover:bg-gray-800
+                        hover:text-white
+                        font-bold
+                        transition-colors
+                        text-2xl
+                    "
+                    onClick={() => router.push("/login")}
+                >
+                    Entrar
+                </button>
+            </div>
+        </div>
+    );
 }

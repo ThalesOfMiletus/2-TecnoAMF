@@ -1,28 +1,38 @@
-// components/forms/FileUpload.tsx
+// components/upload/page.tsx
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { UploadCloud, File, X } from 'lucide-react';
 
-const FileUpload = () => {
+// Adicionamos a nova prop onFilesChange
+interface FileUploadProps {
+  onFilesChange: (files: File[]) => void;
+}
+
+const FileUpload = ({ onFilesChange }: FileUploadProps) => {
   const [files, setFiles] = useState<File[]>([]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
-  }, []);
+    // Apenas permitimos um arquivo por vez, como parece ser a lógica
+    const newFiles = [...acceptedFiles];
+    setFiles(newFiles);
+    onFilesChange(newFiles); // Notifica o componente pai sobre a mudança
+  }, [onFilesChange]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'image/jpeg': [],
-      'image/png': [],
-      'application/pdf': [],
+      'image/jpeg': ['.jpeg', '.jpg'],
+      'image/png': ['.png'],
     },
+    multiple: false, // Garante que apenas um arquivo possa ser selecionado por vez
   });
 
   const removeFile = (fileName: string) => {
-    setFiles(files.filter(file => file.name !== fileName));
+    const updatedFiles = files.filter(file => file.name !== fileName);
+    setFiles(updatedFiles);
+    onFilesChange(updatedFiles); // Notifica o componente pai
   };
 
   return (
@@ -34,14 +44,14 @@ const FileUpload = () => {
       >
         <input {...getInputProps()} />
         <UploadCloud className="w-10 h-10 text-gray-500 mb-2" />
-        <p className="text-lg font-semibold text-gray-700">Arraste e solte os arquivos aqui</p>
+        <p className="text-lg font-semibold text-gray-700">Arraste e solte a imagem aqui</p>
         <p className="text-sm text-gray-500">ou clique para selecionar</p>
-        <p className="text-xs text-gray-400 mt-2">PNG, JPG ou PDF</p>
+        <p className="text-xs text-gray-400 mt-2">PNG ou JPG</p>
       </div>
 
       {files.length > 0 && (
         <div className="mt-4">
-          <h4 className="font-semibold text-gray-800">Arquivos Selecionados:</h4>
+          <h4 className="font-semibold text-gray-800">Arquivo Selecionado:</h4>
           <ul className="mt-2 space-y-2">
             {files.map(file => (
               <li key={file.name} className="flex items-center justify-between bg-gray-100 p-2 rounded-md">
