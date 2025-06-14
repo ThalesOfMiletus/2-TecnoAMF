@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Dentista(models.Model):
     user  = models.OneToOneField(User, on_delete=models.CASCADE, related_name='dentista_profile')
     cro = models.CharField(max_length=200)
-    pacientes = models.ManyToManyField("Paciente", related_name="pacientes_do_dentista")
+    pacientes = models.ManyToManyField("Paciente", related_name="pacientes_do_dentista", blank=True, null=True)
 
     def __str__(self):
         return self.user
@@ -15,14 +15,14 @@ class Paciente(models.Model):
     cpf = models.CharField(max_length=11)
     celular = models.IntegerField()
     email = models.CharField()
-    endereco = models.CharField(max_length=200)
-    imagens = models.ForeignKey("Panoramica", on_delete=models.PROTECT, related_name='pacientes_imagens')
+    endereco = models.CharField(max_length=200, blank=True, null=True)
+    imagens = models.ForeignKey("Panoramica", on_delete=models.PROTECT, related_name='pacientes_imagens', blank=True, null=True)
 
     def __str__(self):
         return self.nome
     
 class Panoramica(models.Model):
-    foto = models.ImageField()
+    foto = models.TextField()
     paciente = models.ForeignKey(Paciente, on_delete=models.PROTECT)
     data = models.DateTimeField()
     relatorio = models.ForeignKey('Relatorio', blank=True, null=True, on_delete=models.PROTECT, related_name='relatorios_da_panoramica')
@@ -33,6 +33,8 @@ class Relatorio(models.Model):
     enfermidade = models.CharField(max_length=200)
     descricao = models.TextField(verbose_name="Descrição")
     solucao = models.TextField(verbose_name="Solução")
+    data = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         return "relatorio" + self.enfermidade

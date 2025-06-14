@@ -1,15 +1,18 @@
 
 from pathlib import Path
 import os
+from datetime import timedelta
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-=b(3z_bfh^=c%t9cszg0lp+12qgvo@m@9*bfay8%!b!-e5#16p"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -134,3 +137,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
+
+SIMPLE_JWT = {
+    # Token de acesso dura 60 minutos
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
