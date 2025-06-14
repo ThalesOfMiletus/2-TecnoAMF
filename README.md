@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## IMPORTANTE!!!!
 
-## Getting Started
+Após clonar o projeto e instalar as dependências, será necessário criar um arquivo .env na raíz do projeto do frontend
+e conter a rota do backend: NEXT_PUBLIC_API_URL='endereço_do_backend' para funcionamento e comunicação
 
-First, run the development server:
+## Linea Dentale - Frontend Next.js
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Crie o .env:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ - **.env**: e insira: NEXT_PUBLIC_API_URL='endereço_do_backend'
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Instale as dependências:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    ```bash
+        npm i
+    ```
+3. inicie o frontend:
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    ```bash
+        npm run dev
+    ```
